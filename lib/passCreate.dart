@@ -1,18 +1,16 @@
 import 'dart:math';
 
-String generatePassword({
-  bool letter = true,
-  bool isNumber = true,
-  bool isSpecial = true,
-}) {
-  final length = 20;
+String generatePassword(bool upperLetter, bool lowerLetter, bool isNumber,
+    bool isSpecial, double lengthPass) {
   final letterLowerCase = "abcdefghijklmnopqrstuvwxyz";
   final letterUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   final number = '0123456789';
   final special = '@#%^*>\$@?/[]=+';
 
+  int length = lengthPass.toInt();
   String chars = "";
-  if (letter) chars += '$letterLowerCase$letterUpperCase';
+  if (upperLetter) chars += '$letterUpperCase';
+  if (lowerLetter) chars += '$letterLowerCase';
   if (isNumber) chars += '$number';
   if (isSpecial) chars += '$special';
 

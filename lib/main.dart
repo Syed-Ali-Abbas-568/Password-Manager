@@ -8,13 +8,19 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
   final _controller = TextEditingController();
+  bool upperLetter = true;
+  bool lowerLetter = false;
+  bool number = false;
+  bool special = false;
+  double length = 8;
+  bool Invalid = false;
+
 //  final scaffodlKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -70,6 +76,54 @@ class _MyAppState extends State<MyApp> {
                 height: 15,
               ),
               CreateButtonWidget(),
+              const Text(
+                "Options",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              CheckboxListTile(
+                title: const Text('UpperCase Letters'),
+                value: upperLetter,
+                onChanged: (upperLetter) =>
+                    setState(() => this.upperLetter = upperLetter!),
+              ),
+              CheckboxListTile(
+                title: const Text('LowerCase Letters'),
+                value: lowerLetter,
+                onChanged: (lowerLetter) =>
+                    setState(() => this.lowerLetter = lowerLetter!),
+              ),
+              CheckboxListTile(
+                title: const Text('Numbers'),
+                value: number,
+                onChanged: (number) => setState(() => this.number = number!),
+              ),
+              CheckboxListTile(
+                title: const Text('Special Symbols'),
+                value: special,
+                onChanged: (special) => setState(() => this.special = special!),
+              ),
+              const Text(
+                'Choose Length',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              Slider(
+                  value: length,
+                  min: 8.0,
+                  max: 50.0,
+                  label: length.round().toString(),
+                  onChanged: (double newValue) {
+                    setState(() {
+                      length = newValue;
+                    });
+                  }),
+              Visibility(
+                visible: Invalid,
+                child: const Text('Alert: You must tick at least 1 tick box',
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red)),
+              )
             ],
           ))),
     );
@@ -79,10 +133,17 @@ class _MyAppState extends State<MyApp> {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(primary: Colors.black),
         onPressed: () {
-          final password = generatePassword();
-          _controller.text = password;
+          if ((upperLetter == false && lowerLetter == false) &&
+              (special == false && number == false)) {
+            Invalid = true;
+          } else {
+            Invalid = false;
+            final password = generatePassword(upperLetter, lowerLetter, number,
+                special, length.roundToDouble());
+            _controller.text = password;
+          }
         },
-        child: Text(
+        child: const Text(
           "Generate",
           style: TextStyle(color: Colors.white),
         ));
