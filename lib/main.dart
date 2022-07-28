@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _controller = TextEditingController();
+//  final scaffodlKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +28,6 @@ class _MyAppState extends State<MyApp> {
           body: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
@@ -42,6 +43,26 @@ class _MyAppState extends State<MyApp> {
               TextFormField(
                 controller: _controller,
                 readOnly: true,
+                enableInteractiveSelection: false,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.purple),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.purple)),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      final data = ClipboardData(text: _controller.text);
+                      Clipboard.setData(data);
+                      // final snackbar =
+                      //     SnackBar(content: Text("Password Copied"));
+                      // ScaffoldMessenger.of(context)
+                      //   ..removeCurrentSnackBar()
+                      //   ..showSnackBar(snackbar);
+                    },
+                    icon: Icon(Icons.copy),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 15,
