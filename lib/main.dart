@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'passCreate.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +16,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _controller = TextEditingController();
 //  final scaffodlKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,7 +39,7 @@ class _MyAppState extends State<MyApp> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               TextFormField(
@@ -45,30 +47,44 @@ class _MyAppState extends State<MyApp> {
                 readOnly: true,
                 enableInteractiveSelection: false,
                 decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.purple),
                   ),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.purple)),
                   suffixIcon: IconButton(
                     onPressed: () {
                       final data = ClipboardData(text: _controller.text);
                       Clipboard.setData(data);
-                      // final snackbar =
-                      //     SnackBar(content: Text("Password Copied"));
-                      // ScaffoldMessenger.of(context)
-                      //   ..removeCurrentSnackBar()
-                      //   ..showSnackBar(snackbar);
+                      const snackbar = SnackBar(content: Text("Password Copy"));
+
+                      ScaffoldMessenger.of(context)
+                        ..removeCurrentSnackBar()
+                        ..showSnackBar(snackbar);
                     },
                     icon: Icon(Icons.copy),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
+              CreateButtonWidget(),
             ],
           ))),
     );
+  }
+
+  Widget CreateButtonWidget() {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(primary: Colors.black),
+        onPressed: () {
+          final password = generatePassword();
+          _controller.text = password;
+        },
+        child: Text(
+          "Generate",
+          style: TextStyle(color: Colors.white),
+        ));
   }
 }
