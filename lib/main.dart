@@ -19,10 +19,8 @@ class _MyAppState extends State<MyApp> {
   bool number = false;
   bool special = false;
   double length = 8;
-  bool Invalid = false;
-
-//  final scaffodlKey = GlobalKey<ScaffoldState>();
-
+  bool invalid = false;
+  int counter = 8;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,11 +60,9 @@ class _MyAppState extends State<MyApp> {
                     onPressed: () {
                       final data = ClipboardData(text: _controller.text);
                       Clipboard.setData(data);
-                      const snackbar = SnackBar(content: Text("Password Copy"));
+                      // const snackbar = SnackBar(content: Text("Password Copy"));
 
-                      ScaffoldMessenger.of(context)
-                        ..removeCurrentSnackBar()
-                        ..showSnackBar(snackbar);
+                      // ScaffoldMessenger.of(context).showSnackBar(snackbar);
                     },
                     icon: Icon(Icons.copy),
                   ),
@@ -103,7 +99,11 @@ class _MyAppState extends State<MyApp> {
                 onChanged: (special) => setState(() => this.special = special!),
               ),
               const Text(
-                'Choose Length',
+                'Length',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '$counter',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               Slider(
@@ -114,10 +114,11 @@ class _MyAppState extends State<MyApp> {
                   onChanged: (double newValue) {
                     setState(() {
                       length = newValue;
+                      counter = length.round();
                     });
                   }),
               Visibility(
-                visible: Invalid,
+                visible: invalid,
                 child: const Text('Alert: You must tick at least 1 tick box',
                     style: TextStyle(
                         fontSize: 16,
@@ -135,9 +136,9 @@ class _MyAppState extends State<MyApp> {
         onPressed: () {
           if ((upperLetter == false && lowerLetter == false) &&
               (special == false && number == false)) {
-            Invalid = true;
+            invalid = true;
           } else {
-            Invalid = false;
+            invalid = false;
             final password = generatePassword(upperLetter, lowerLetter, number,
                 special, length.roundToDouble());
             _controller.text = password;
