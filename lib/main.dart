@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'passCreate.dart';
 
 void main() {
@@ -33,11 +32,12 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Center(
               child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const Text(""),
               const Text(
-                'Generate Random Password',
+                'Login',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -46,85 +46,116 @@ class _MyAppState extends State<MyApp> {
               const SizedBox(
                 height: 15,
               ),
-              TextFormField(
-                controller: _controller,
-                readOnly: true,
-                enableInteractiveSelection: false,
-                decoration: InputDecoration(
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.purple),
-                  ),
-                  enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.purple)),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      final data = ClipboardData(text: _controller.text);
-                      Clipboard.setData(data);
-                      // const snackbar = SnackBar(content: Text("Password Copy"));
 
-                      // ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                    },
-                    icon: Icon(Icons.copy),
+              Container(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: TextFormField(
+                  controller: _controller,
+                  readOnly: true,
+                  enableInteractiveSelection: false,
+                  decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.purple),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.purple)),
                   ),
                 ),
+              ),
+
+              const Text(
+                'Password',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: TextFormField(
+                  controller: _controller,
+                  readOnly: true,
+                  enableInteractiveSelection: false,
+                  decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.purple),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.purple)),
+                  ),
+                ),
+              ),
+
+              CheckboxListTile(
+                title: const Text(
+                  'Forget Password',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),
+                value: number,
+                onChanged: (number) => setState(() => this.number = number!),
               ),
               const SizedBox(
                 height: 15,
               ),
+
               CreateButtonWidget(),
-              const Text(
-                "Options",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              CheckboxListTile(
-                title: const Text('UpperCase Letters'),
-                value: upperLetter,
-                onChanged: (upperLetter) =>
-                    setState(() => this.upperLetter = upperLetter!),
-              ),
-              CheckboxListTile(
-                title: const Text('LowerCase Letters'),
-                value: lowerLetter,
-                onChanged: (lowerLetter) =>
-                    setState(() => this.lowerLetter = lowerLetter!),
-              ),
-              CheckboxListTile(
-                title: const Text('Numbers'),
-                value: number,
-                onChanged: (number) => setState(() => this.number = number!),
-              ),
-              CheckboxListTile(
-                title: const Text('Special Symbols'),
-                value: special,
-                onChanged: (special) => setState(() => this.special = special!),
-              ),
-              const Text(
-                'Length',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '$counter',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Slider(
-                  value: length,
-                  min: 8.0,
-                  max: 50.0,
-                  label: length.round().toString(),
-                  onChanged: (double newValue) {
-                    setState(() {
-                      length = newValue;
-                      counter = length.round();
-                    });
-                  }),
-              Visibility(
-                visible: invalid,
-                child: const Text('Alert: You must tick at least 1 tick box',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red)),
-              )
+              // const Text(
+              //   "Options",
+              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // ),
+              // CheckboxListTile(
+              //   title: const Text('UpperCase Letters'),
+              //   value: upperLetter,
+              //   onChanged: (upperLetter) =>
+              //       setState(() => this.upperLetter = upperLetter!),
+              // ),
+              // CheckboxListTile(
+              //   title: const Text('LowerCase Letters'),
+              //   value: lowerLetter,
+              //   onChanged: (lowerLetter) =>
+              //       setState(() => this.lowerLetter = lowerLetter!),
+              // ),
+              // CheckboxListTile(
+              //   title: const Text('Numbers'),
+              //   value: number,
+              //   onChanged: (number) => setState(() => this.number = number!),
+              // ),
+              // CheckboxListTile(
+              //   title: const Text('Special Symbols'),
+              //   value: special,
+              //   onChanged: (special) => setState(() => this.special = special!),
+              // ),
+              // const Text(
+              //   'Length',
+              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // ),
+              // Text(
+              //   '$counter',
+              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // ),
+              // Slider(
+              //     value: length,
+              //     min: 8.0,
+              //     max: 50.0,
+              //     label: length.round().toString(),
+              //     onChanged: (double newValue) {
+              //       setState(() {
+              //         length = newValue;
+              //         counter = length.round();
+              //       });
+              //     }),
+              // Visibility(
+              //   visible: invalid,
+              //   child: const Text('Alert: You must tick at least 1 tick box',
+              //       style: TextStyle(
+              //           fontSize: 16,
+              //           fontWeight: FontWeight.bold,
+              //           color: Colors.red)),
+              // )
             ],
           ))),
     );
@@ -134,7 +165,8 @@ class _MyAppState extends State<MyApp> {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(primary: Colors.black),
         onPressed: () {
-          if ((upperLetter == false && lowerLetter == false) &&
+          if (upperLetter == false &&
+              lowerLetter == false &&
               (special == false && number == false)) {
             invalid = true;
           } else {
@@ -145,7 +177,7 @@ class _MyAppState extends State<MyApp> {
           }
         },
         child: const Text(
-          "Generate",
+          "Login",
           style: TextStyle(color: Colors.white),
         ));
   }
