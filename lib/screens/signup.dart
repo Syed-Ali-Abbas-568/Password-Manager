@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-var colour = Colors.purple;
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final _emailcontroller = TextEditingController();
   final _pass = TextEditingController();
 
@@ -23,11 +21,11 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                "assets/images/lock.png",
-                height: size.width * 0.4,
+                "assets/images/signup.png",
+                height: size.height * 0.4,
               ),
               const Text(
-                "\n\nLogin To Password Manager",
+                "\n\nSignup To Password Manager",
                 style: TextStyle(
                     fontSize: 18,
                     color: Colors.purple,
@@ -46,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "  Email: ",
                       style: TextStyle(color: Colors.purple, fontSize: 17),
                     ),
-                    hintText: "Write Email here",
+                    hintText: "Write your Email here",
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.purple),
                     ),
@@ -70,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "  Password: ",
                       style: TextStyle(color: Colors.purple, fontSize: 17),
                     ),
-                    hintText: "Write Password here",
+                    hintText: "Write your Password here",
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.purple),
                     ),
@@ -79,52 +77,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              Visibility(
-                visible: false,
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                  child: const Text(
-                    "Error: Incorrect Credentials. Please check your email or passoword",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.red,
-                        fontFamily: 'RobotoMono',
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        backgroundColor: Colors.purple,
-                        content: Text(
-                          'Please wait while we log you in.',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontFamily: 'RobotoMono',
-                          ),
-                        ),
-                      ));
-                    },
-                    style: TextButton.styleFrom(
-                      primary: Colors.white,
-                      backgroundColor: Colors.purple,
-                      side: const BorderSide(color: Colors.purple),
-                    ),
-                    child: const Text(
-                      "LOGIN",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'RobotoMono',
-                      ),
-                    ),
-                  ),
                   TextButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -140,12 +96,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ));
                     },
                     style: TextButton.styleFrom(
-                      primary: Colors.purple,
-                      backgroundColor: Colors.white,
+                      primary: Colors.white,
+                      backgroundColor: Colors.purple,
                       side: const BorderSide(color: Colors.purple),
                     ),
                     child: const Text(
-                      "Forgot Password?",
+                      "SIGNUP",
                       style: TextStyle(
                         fontSize: 18,
                         fontFamily: 'RobotoMono',

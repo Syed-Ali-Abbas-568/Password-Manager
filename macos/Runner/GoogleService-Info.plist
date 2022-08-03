@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>580074613319-eoo7a4nkmkaah45tt75t9at7pk9aosns.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.580074613319-eoo7a4nkmkaah45tt75t9at7pk9aosns</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBiCei9OOvkrKau8XdtxT1-tY5fh6URQfQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>580074613319</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.passwordManager</string>
+	<key>PROJECT_ID</key>
+	<string>password-manager-86927</string>
+	<key>STORAGE_BUCKET</key>
+	<string>password-manager-86927.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:580074613319:ios:db8a95647a147c098c1f62</string>
+</dict>
+</plist>

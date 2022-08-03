@@ -10,9 +10,9 @@ String generatePassword(bool upperLetter, bool lowerLetter, bool isNumber,
   int length = lengthPass.toInt();
   String chars = "";
   if (upperLetter) chars += letterUpperCase;
-  if (lowerLetter) chars += '$letterLowerCase';
-  if (isNumber) chars += '$number';
-  if (isSpecial) chars += '$special';
+  if (lowerLetter) chars += letterLowerCase;
+  if (isNumber) chars += number;
+  if (isSpecial) chars += special;
 
   return List.generate(length, (index) {
     final indexRandom = Random.secure().nextInt(chars.length);
