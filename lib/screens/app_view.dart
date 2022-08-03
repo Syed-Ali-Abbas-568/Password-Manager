@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:password_manager/screens/welcome.dart';
 import 'package:password_manager/widgets/pass_gen.dart';
 
 class AppView extends StatefulWidget {
@@ -48,8 +51,29 @@ class _AppViewState extends State<AppView> {
                 color: Colors.white,
               ),
               onPressed: () {
-                // do something
-                //display an alert box with yes no optoin
+                showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                            title: const Text("Alert"),
+                            content:
+                                const Text("Are you sure you want to log out?"),
+                            actions: <Widget>[
+                              TextButton(
+                                  onPressed: () async {
+                                    await FirebaseAuth.instance.signOut();
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const WelcomeScreen()));
+                                  },
+                                  child: const Text("YES")),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(true);
+                                  },
+                                  child: const Text("NO")),
+                            ]));
               },
             )
           ],
