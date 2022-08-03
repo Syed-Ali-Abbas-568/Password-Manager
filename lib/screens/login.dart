@@ -1,4 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:password_manager/screens/app_view.dart';
+
+import '../firebase_options.dart';
 
 var colour = Colors.purple;
 
@@ -12,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailcontroller = TextEditingController();
   final _pass = TextEditingController();
-
+  bool error = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -80,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Visibility(
-                visible: false,
+                visible: error,
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: const Text(
@@ -99,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   TextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: Colors.purple,
                         content: Text(
@@ -111,6 +116,28 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ));
+                      await Firebase.initializeApp(
+                        options: DefaultFirebaseOptions.currentPlatform,
+                      );
+
+                      try {
+                        final email = _emailcontroller.text;
+                        final pass = _pass.text;
+                        final userCredential = await FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: email, password: pass);
+
+                        if (!mounted) {
+                          return;
+                        } else if (userCredential != null) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AppView()));
+                        }
+                      } catch (e) {
+                        error = true;
+                      }
                     },
                     style: TextButton.styleFrom(
                       primary: Colors.white,

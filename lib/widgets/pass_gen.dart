@@ -26,7 +26,6 @@ class _PassGenState extends State<PassGen> {
     }
   }
 
-  //createButtonWidget();
   @override
   Widget build(BuildContext context) {
     init();

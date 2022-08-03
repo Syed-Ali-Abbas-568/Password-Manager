@@ -15,6 +15,7 @@ class _AppViewState extends State<AppView> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           bottom: const TabBar(
             tabs: [
               Tab(

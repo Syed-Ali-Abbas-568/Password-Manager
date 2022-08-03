@@ -1,4 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:password_manager/firebase_options.dart';
+
+import 'app_view.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -82,11 +88,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   TextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: Colors.purple,
                         content: Text(
-                          'A SnackBar has been shown.',
+                          'Please wait while we register your account',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
@@ -94,6 +100,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ));
+
+                      await Firebase.initializeApp(
+                        options: DefaultFirebaseOptions.currentPlatform,
+                      );
+
+                      try {
+                        final email = _emailcontroller.text;
+                        final pass = _pass.text;
+                        final userCredential = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: email, password: pass);
+
+                        if (!mounted) {
+                          return;
+                        } else if (userCredential != null) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AppView()));
+                        }
+                      } catch (e) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          backgroundColor: Colors.purple,
+                          content: Text(
+                            'Error this email is already registered',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontFamily: 'RobotoMono',
+                            ),
+                          ),
+                        ));
+                      }
                     },
                     style: TextButton.styleFrom(
                       primary: Colors.white,

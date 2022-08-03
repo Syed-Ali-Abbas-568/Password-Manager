@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:password_manager/screens/welcome.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
