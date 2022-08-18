@@ -1,16 +1,28 @@
-# password_manager
+# Password Manager
 
-A new Flutter project.
+Flutter application for saving and generating the random password.
 
-## Getting Started
+## User Flow Diagram and Description
+![](Userflow2.png)
 
-This project is a starting point for a Flutter application.
+## Use Cases and description
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ 
+### Description:  ####
+A Flutter app made using firebase which stores all your passwords and allows you to generate a random password.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Use Cases:
+#### 1. User should be able to sign in/sign up with his google account using firebase 
+#### 2. User should be able to sign in/sign up using a local account.
+#### 3. User should be already have a sample password generated for him.
+#### 4. User should be able to toggle the lenght of his password and the character,symbols he wants to use.
+#### 5. User should be able to copy his password to clipboard
+#### 6. User should be able to store his passwords with their username in the app
+#### 7. User should be able to search his passwords.
+#### 8. User should be able to exit his app.
+
+
+## Video defining the use cases one by one
+
+[![Watch this video](https://i9.ytimg.com/vi/T_PK8BD5sKo/mqdefault.jpg?v=62fe6582&sqp=CITL-ZcG&rs=AOn4CLD-pgWhId7uk3TsqfWvP6mt7LQYqw)](https://youtu.be/T_PK8BD5sKo)
