@@ -13,14 +13,26 @@ Flutter application for saving and generating the random password.
 A Flutter app made using firebase which stores all your passwords and allows you to generate a random password.
 
 ### Use Cases:
-#### 1. User should be able to sign in/sign up with his google account using firebase 
-#### 2. User should be able to sign in/sign up using a local account.
-#### 3. User should be already have a sample password generated for him.
-#### 4. User should be able to toggle the lenght of his password and the character,symbols he wants to use.
-#### 5. User should be able to copy his password to clipboard
-#### 6. User should be able to store his passwords with their username in the app
-#### 7. User should be able to search his passwords.
-#### 8. User should be able to exit his app.
+
+#### Signin with Google
+ User should be able to sign in/sign up with his google account.
+#### Signin Local
+User should be able to sign in/sign up using a local account.
+#### Password Generation
+App should create a randomly generate password and user should be able to toggle the length of his passwords and choose whether he wants uppercase letter, symbols or lowercase letters.
+
+#### Copy Password
+The app should allow the user should to copy his password to his devices clipboard.
+
+#### Store Password
+The app should allow the user to store his passwords with their sitename in the app
+
+#### Search Password
+The app should allow a user to search his passwords using the sitename.
+
+
+#### Logout
+The app should allow the user to logout.
 
 
 ## Video defining the use cases one by one
